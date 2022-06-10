@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+encoding//src/Controllers/Client.java=UTF-8
+encoding//src/Controllers/Server.java=UTF-8
+encoding//src/Models/Client.java=UTF-8
+encoding//src/Services/AccountService.java=UTF-8
+encoding//src/Services/ConnectDB.java=UTF-8
+encoding//src/Services/SecurityRSA.java=UTF-8

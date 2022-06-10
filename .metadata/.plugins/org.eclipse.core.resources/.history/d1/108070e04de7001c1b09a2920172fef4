@@ -1,0 +1,37 @@
+package Services;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ReadConfig {
+
+	public static ArrayList<String> readFile() {
+		ArrayList<String> list = new ArrayList<String>();
+		try {
+			String path = ".../../Config/config.txt";
+			java.util.Scanner sc = new java.util.Scanner(new java.io.File(path));
+			while (sc.hasNextLine()) {
+				list.add(sc.nextLine());
+			}
+			sc.close();
+		} catch (Exception e) {
+			System.out.println("Error: " + e);
+		}
+		return list;
+	}
+	public static String getVariable(String s) {
+		ArrayList<String> list = readFile();
+		for (String s : list) {
+			
+			String[] arr = s.split("=");
+		}
+		return arr[0];
+	}
+	public static void main(String[] args) {
+		ArrayList<String> list = readFile();
+		for (String s : list) {
+			System.out.println(s);
+		}
+	}
+}

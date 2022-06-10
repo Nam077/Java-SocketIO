@@ -1,0 +1,7 @@
+package Configs;
+import io.github.cdimascio.dotenv.Dotenv;
+public class ConfigSQL {
+	
+	Dotenv dotenv = Dotenv.load();
+	dotenv.get(“MY_ENV_VAR1”);
+}

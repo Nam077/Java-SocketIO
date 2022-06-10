@@ -1,0 +1,32 @@
+package Services;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ReadConfig {
+
+	public static ArrayList<String> readFile() {
+		String path = ".../../Config/config.txt";
+		String line = "";
+		ArrayList<String> list = new ArrayList();
+		try {
+			java.util.Scanner file = new java.util.Scanner(new java.io.File(path));
+			while (file.hasNextLine()) {
+				line = file.nextLine();
+				list.add(line);
+			}
+			file.close();
+			for (String s : list) {
+				String[] split = s.split("=");
+				System.out.println(split[1]);
+				
+			}
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+	}
+	public static void main(String[] args) {
+		readFile();
+	}
+}

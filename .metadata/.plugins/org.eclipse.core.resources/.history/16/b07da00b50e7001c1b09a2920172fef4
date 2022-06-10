@@ -1,0 +1,21 @@
+package Services;
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+
+public class ConnectDB {
+	
+	 private static String DB_URL = "jdbc:mysql://localhost:3306/"+ReadConfig.getVariable("NAME_DATABASE");
+	    public static Connection getConnection(S) {
+	        Connection conn = null;
+	        try {
+	          
+	            conn = DriverManager.getConnection(dbURL, userName, password);
+	            System.out.println("Kết nối thành công với Database");
+	        } catch (Exception ex) {
+	            System.out.println("Kết nối thất bại !");
+	            ex.printStackTrace();
+	        }
+	        return conn;
+	    }
+}

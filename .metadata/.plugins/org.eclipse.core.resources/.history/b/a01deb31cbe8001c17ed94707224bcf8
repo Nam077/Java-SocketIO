@@ -1,0 +1,58 @@
+package Models;
+import Services.AccountService;
+
+import java.io.*;
+import java.net.Socket;
+import java.util.ArrayList;
+
+public class Client extends Thread {
+	public Socket clientSocket;
+
+    public  Client () {
+    	String serverName = "localhost";
+        try {
+			clientSocket = new Socket(serverName, 8080);
+			System.out.println("Client is connected to server");
+	    	this.start();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+    }
+    @Override
+    public void run() {
+        super.run();
+        try {
+        	while(true) {
+        		DataInputStream in = new DataInputStream(clientSocket.getInputStream());
+				String data = in.readUTF();
+				if(data.equals("send models login")) {
+				
+				}
+        	}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void SendData(String message) {
+		try {
+			DataOutputStream out = new DataOutputStream(clientSocket.getOutputStream());
+			out.writeUTF(message);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 	
+	}
+    public void SendObjectUser(String message) {
+		try {
+			DataOutputStream out = new DataOutputStream(clientSocket.getOutputStream());
+			out.writeUTF(message);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 	
+	}
+}

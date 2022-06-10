@@ -1,0 +1,25 @@
+package Controllers;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import Models.Client;
+import Views.Login;
+
+public class HandleClient {
+	
+	public static void main(String[] args) {
+		Login login = new Login();
+		Client client  = new Client();
+		
+		login.loginBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				client.SendData("login");
+				String emailLogin = login.loginEmail.getText().toString();
+				
+			}
+		});
+	}
+}
