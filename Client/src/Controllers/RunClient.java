@@ -6,38 +6,39 @@ import java.awt.event.ActionListener;
 import Models.Client;
 import Models.User;
 import Services.SecurityRSA;
-import Views.Login;
+import Views.*;
 import Views.Register;
 import Views.UserTable;
 
 public class RunClient extends Thread {
-	Login login =  new Login();;
+	LoginUI loginUI =  new LoginUI();;
 	SecurityRSA securityRSA = new SecurityRSA();
 	UserTable userTable = new UserTable();;
-	Register register = new Register();;
+
+	RegisterUI registerUI = new RegisterUI();
 	Client client;
 	public RunClient() {
-		register.setVisible(false);
+		registerUI.setVisible(false);
 		client  = new Client();
-		login.registerBtn.addActionListener(new ActionListener() {
+		loginUI.reg_btnLogin.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				login.setVisible(false);
-				register.setVisible(true);
+				loginUI.setVisible(false);
+				registerUI.setVisible(true);
 				
 				
 			}
 		});
-		register.btnRegister.addActionListener(new ActionListener() {
+		registerUI.submit_btnRegister.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				client.SendData("regsiter");
-				String email = register.emailRegister.getText();
-				String name = register.nameRegister.getText();
-				String password = register.passwordRegister.getText();
+				String email = registerUI.emailRegister.getText();
+				String name = registerUI.nameRegister.getText();
+				String password = registerUI.passwordRegister.getText();
 				password = securityRSA.encrypt(password);
 				User userRegister = new User();
 				userRegister.setEmail(email);
@@ -49,13 +50,13 @@ public class RunClient extends Thread {
 			}
 		});
 		
-		login.loginBtn.addActionListener(new ActionListener() {
+		loginUI.submit_btnLogin.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				client.SendData("login");
-				String loginEmail = login.loginEmail.getText();
-				String loginPassword = login.loginPassword.getText();
+				String loginEmail = loginUI.emailLogin.getText();
+				String loginPassword = loginUI.passwordLogin.getText();
 				User userLogin = new  User();
 				userLogin.setEmail(loginEmail);
 				userLogin.setPassword(loginPassword);
@@ -69,23 +70,23 @@ public class RunClient extends Thread {
 			if (client.checkLoginString.length() != 0) {
 				
 				if (client.checkLoginString.equals("done")) {
-					login.notification("Ok");
+					loginUI.notification("Ok");
 					client.SendData("send list user");
-					login.setVisible(false);
+					loginUI.setVisible(false);
 					userTable.setVisible(true);
 				} else {
-					login.notification("No ok");
+					loginUI.notification("No ok");
 				}
 				client.checkLoginString = "";
 			}
 			if (client.checkRegisterString.length() != 0) {
 				if (client.checkRegisterString.equals("done")) {
-					register.notification("Ok");
-					register.setVisible(false);
-					login.setVisible(true);
+					registerUI.notification("Ok");
+					registerUI.setVisible(false);
+					loginUI.setVisible(true);
 					
 				} else {
-					register.notification("No ok");
+					registerUI.notification("No ok");
 				}
 				client.checkRegisterString = "";
 			}

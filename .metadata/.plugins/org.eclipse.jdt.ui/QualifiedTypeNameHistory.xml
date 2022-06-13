@@ -34,6 +34,9 @@
     <fullyQualifiedTypeName name="Controllers.HandleClient"/>
     <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
     <fullyQualifiedTypeName name="Services.AccountService"/>
-    <fullyQualifiedTypeName name="Models.User"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="Views.LoginUI"/>
+    <fullyQualifiedTypeName name="Views.RegisterUI"/>
+    <fullyQualifiedTypeName name="Models.User"/>
+    <fullyQualifiedTypeName name="java.io.Serializable"/>
 </qualifiedTypeNameHistroy>
