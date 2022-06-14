@@ -21,6 +21,8 @@ import javax.swing.UIManager;
 import javax.swing.JComboBox;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class Manage extends JFrame {
 
@@ -49,6 +51,10 @@ public class Manage extends JFrame {
 	private JTextField dateManage;
 	private JTextField plateManage;
 	private JTable table_1;
+	/**
+	 * @wbp.nonvisual location=1003,724
+	 */
+	private final JPanel panel_1 = new JPanel();
 
 	/**
 	 * Launch the application.
@@ -87,28 +93,28 @@ public class Manage extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JPanel homePage = new JPanel();
+		JPanel HomePanel = new JPanel();
 		
-		homePage.setBackground(new Color(0, 155, 245));
-		homePage.setBounds(10, 195, 262, 56);
-		panel.add(homePage);
-		homePage.setLayout(null);
+		HomePanel.setBackground(new Color(0, 155, 245));
+		HomePanel.setBounds(10, 195, 262, 56);
+		panel.add(HomePanel);
+		HomePanel.setLayout(null);
 		
 		JPanel panel_2_2 = new JPanel();
 		panel_2_2.setLayout(null);
 		panel_2_2.setBackground(Color.WHITE);
 		panel_2_2.setBounds(255, 0, 7, 56);
-		homePage.add(panel_2_2);
+		HomePanel.add(panel_2_2);
 		
 		JLabel lblNewLabel = new JLabel("Trang Ch\u1EE7");
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Roboto", Font.BOLD, 20));
 		lblNewLabel.setBounds(80, 16, 96, 24);
-		homePage.add(lblNewLabel);
+		HomePanel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(28, 0, 36, 56);
-		homePage.add(lblNewLabel_1);
+		HomePanel.add(lblNewLabel_1);
 		lblNewLabel_1.setIcon(new ImageIcon("G:\\Java\\Java-SocketIO\\ServerIO\\Imgs\\house-solid (1).png"));
 		
 		JPanel UserPanel = new JPanel();
@@ -231,15 +237,19 @@ public class Manage extends JFrame {
 		avatar.setBounds(87, 36, 100, 100);
 		panel.add(avatar);
 		
-		JLabel lblNewLabel_2 = new JLabel("Nguyễn Mai Lan");
+		JLabel lblNewLabel_2 = new JLabel("Nguyễn Blbla");
 		lblNewLabel_2.setForeground(Color.WHITE);
 		lblNewLabel_2.setFont(new Font("Roboto", Font.BOLD, 20));
-		lblNewLabel_2.setBounds(61, 146, 158, 33);
+		lblNewLabel_2.setBounds(75, 146, 158, 33);
 		panel.add(lblNewLabel_2);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		
 		tabbedPane.setBounds(302, 10, 882, 666);
 		contentPane.add(tabbedPane);
+		
+		JPanel Home = new JPanel();
+		tabbedPane.addTab("Trang Chủ", null, Home, null);
 		
 		JPanel panelUser = new JPanel();
 		panelUser.setBorder(null);
@@ -735,28 +745,74 @@ public class Manage extends JFrame {
 		panelChart.setBackground(Color.WHITE);
 		tabbedPane.addTab("Biểu đố", null, panelChart, null);
 		setLocationRelativeTo(null);
-		UserPanel.addMouseListener(new MouseAdapter() {
+		HomePanel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				tabbedPane.setSelectedIndex(0);
 			}
 		});
-		VehiclePanel.addMouseListener(new MouseAdapter() {
+		UserPanel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				tabbedPane.setSelectedIndex(1);
 			}
 		});
-		ManagePanel.addMouseListener(new MouseAdapter() {
+		VehiclePanel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				tabbedPane.setSelectedIndex(2);
 			}
 		});
-		ChartPanel.addMouseListener(new MouseAdapter() {
+		ManagePanel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				tabbedPane.setSelectedIndex(3);
+			}
+		});
+		ChartPanel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				tabbedPane.setSelectedIndex(4);
+			}
+		});
+		tabbedPane.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				int index = tabbedPane.getSelectedIndex();
+				if(index == 0) {
+					HomePanel.setBackground(new Color(0, 100, 250));
+					UserPanel.setBackground(new Color(0, 155, 245));
+					VehiclePanel.setBackground(new Color(0, 155, 245));
+					ManagePanel.setBackground(new Color(0, 155, 245));
+					ChartPanel.setBackground(new Color(0, 155, 245));
+				}
+				if(index == 1) {
+					UserPanel.setBackground(new Color(0, 100, 250));
+					HomePanel.setBackground(new Color(0, 155, 245));
+					VehiclePanel.setBackground(new Color(0, 155, 245));
+					ManagePanel.setBackground(new Color(0, 155, 245));
+					ChartPanel.setBackground(new Color(0, 155, 245));
+				}
+				else if(index == 2) {
+					VehiclePanel.setBackground(new Color(0, 100, 250));
+					HomePanel.setBackground(new Color(0, 155, 245));
+					UserPanel.setBackground(new Color(0, 155, 245));
+					ManagePanel.setBackground(new Color(0, 155, 245));
+					ChartPanel.setBackground(new Color(0, 155, 245));
+				}
+				else if(index == 3) {
+					ManagePanel.setBackground(new Color(0, 100, 250));
+					HomePanel.setBackground(new Color(0, 155, 245));
+					VehiclePanel.setBackground(new Color(0, 155, 245));
+					UserPanel.setBackground(new Color(0, 155, 245));
+					ChartPanel.setBackground(new Color(0, 155, 245));
+				}
+				else if(index == 4) {
+					ChartPanel.setBackground(new Color(0, 100, 250));
+					HomePanel.setBackground(new Color(0, 155, 245));
+					ManagePanel.setBackground(new Color(0, 155, 245));
+					VehiclePanel.setBackground(new Color(0, 155, 245));
+					UserPanel.setBackground(new Color(0, 155, 245));
+				}
 			}
 		});
 	}
