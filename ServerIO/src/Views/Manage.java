@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Insets;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
 import javax.swing.JScrollPane;
@@ -21,6 +22,9 @@ import javax.swing.UIManager;
 import javax.swing.JComboBox;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
@@ -28,7 +32,7 @@ public class Manage extends JFrame {
 
 	private JPanel contentPane;
 	private JTable tableUser;
-	private JTextField textField_1;
+	private JTextField searchUser;
 	private JTextField idUser;
 	private JTextField emailUser;
 	private JTextField nameUser;
@@ -36,25 +40,23 @@ public class Manage extends JFrame {
 	private JTextField addressUser;
 	private JTextField phoneUser;
 	private JTextField codeUser;
-	private JTextField textField;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTable table;
-	private JTextField textField_9;
+	private JTextField searchVehicle;
+	private JTextField idVehicle;
+	private JTextField nameVehicle;
+	private JTextField colorVehicle;
+	private JTextField typeVehicle;
+	private JTextField dateVehicle;
+	private JTextField seat_capacityVehicle;
+	private JTextField brandVehicle;
+	private JTable tableVehicle;
+	private JTextField searchManage;
 	private JTextField idManage;
 	private JTextField nameManage;
 	private JTextField dateManage;
 	private JTextField plateManage;
-	private JTable table_1;
-	/**
-	 * @wbp.nonvisual location=1003,724
-	 */
-	private final JPanel panel_1 = new JPanel();
+	private JTable tableManage;
+	public JLabel slide;
+	private JTextField dateUser;
 
 	/**
 	 * Launch the application.
@@ -95,7 +97,7 @@ public class Manage extends JFrame {
 		
 		JPanel HomePanel = new JPanel();
 		
-		HomePanel.setBackground(new Color(0, 155, 245));
+		HomePanel.setBackground(new Color(0, 100, 250));
 		HomePanel.setBounds(10, 195, 262, 56);
 		panel.add(HomePanel);
 		HomePanel.setLayout(null);
@@ -249,7 +251,14 @@ public class Manage extends JFrame {
 		contentPane.add(tabbedPane);
 		
 		JPanel Home = new JPanel();
+		Home.setBackground(Color.WHITE);
 		tabbedPane.addTab("Trang Chủ", null, Home, null);
+		Home.setLayout(null);
+		
+		 slide = new JLabel("");
+		slide.setIcon(new ImageIcon("G:\\Java\\Java-SocketIO\\ServerIO\\Imgs\\1 (1).jpg"));
+		slide.setBounds(142, 99, 600, 424);
+		Home.add(slide);
 		
 		JPanel panelUser = new JPanel();
 		panelUser.setBorder(null);
@@ -273,14 +282,14 @@ public class Manage extends JFrame {
 		deleteUser.setBounds(772, 312, 90, 40);
 		panelUser.add(deleteUser);
 		
-		textField_1 = new JTextField();
-		textField_1.setToolTipText("User Password");
-		textField_1.setFont(new Font("Roboto", Font.PLAIN, 15));
-		textField_1.setColumns(10);
-		textField_1.setBorder(null);
-		textField_1.setBackground(new Color(246, 246, 246));
-		textField_1.setBounds(10, 312, 348, 40);
-		panelUser.add(textField_1);
+		searchUser = new JTextField();
+		searchUser.setToolTipText("User Password");
+		searchUser.setFont(new Font("Roboto", Font.PLAIN, 15));
+		searchUser.setColumns(10);
+		searchUser.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 5));
+		searchUser.setBackground(new Color(246, 246, 246));
+		searchUser.setBounds(10, 312, 348, 40);
+		panelUser.add(searchUser);
 		
 		JButton updateUser = new JButton("Update");
 		updateUser.setForeground(Color.WHITE);
@@ -309,20 +318,20 @@ public class Manage extends JFrame {
 		viewUser.setBounds(472, 312, 90, 40);
 		panelUser.add(viewUser);
 		
-		JButton searchUser = new JButton("Search");
-		searchUser.setForeground(Color.WHITE);
-		searchUser.setFont(new Font("Roboto", Font.PLAIN, 15));
-		searchUser.setFocusPainted(false);
-		searchUser.setBorderPainted(false);
-		searchUser.setBackground(new Color(13,202,240));
-		searchUser.setBounds(368, 312, 90, 40);
-		panelUser.add(searchUser);
+		JButton searchUserbt = new JButton("Search");
+		searchUserbt.setForeground(Color.WHITE);
+		searchUserbt.setFont(new Font("Roboto", Font.PLAIN, 15));
+		searchUserbt.setFocusPainted(false);
+		searchUserbt.setBorderPainted(false);
+		searchUserbt.setBackground(new Color(13,202,240));
+		searchUserbt.setBounds(368, 312, 90, 40);
+		panelUser.add(searchUserbt);
 		
 		idUser = new JTextField();
 		idUser.setToolTipText("User Password");
 		idUser.setFont(new Font("Roboto", Font.PLAIN, 15));
 		idUser.setColumns(10);
-		idUser.setBorder(null);
+		idUser.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 5));
 		idUser.setBackground(new Color(246, 246, 246));
 		idUser.setBounds(10, 382, 419, 40);
 		panelUser.add(idUser);
@@ -336,7 +345,7 @@ public class Manage extends JFrame {
 		emailUser.setToolTipText("User Password");
 		emailUser.setFont(new Font("Roboto", Font.PLAIN, 15));
 		emailUser.setColumns(10);
-		emailUser.setBorder(null);
+		emailUser.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 5));
 		emailUser.setBackground(new Color(246, 246, 246));
 		emailUser.setBounds(443, 382, 419, 40);
 		panelUser.add(emailUser);
@@ -350,7 +359,7 @@ public class Manage extends JFrame {
 		nameUser.setToolTipText("User Password");
 		nameUser.setFont(new Font("Roboto", Font.PLAIN, 15));
 		nameUser.setColumns(10);
-		nameUser.setBorder(null);
+		nameUser.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 5));
 		nameUser.setBackground(new Color(246, 246, 246));
 		nameUser.setBounds(10, 452, 419, 40);
 		panelUser.add(nameUser);
@@ -364,7 +373,7 @@ public class Manage extends JFrame {
 		passwordUser.setToolTipText("User Password");
 		passwordUser.setFont(new Font("Roboto", Font.PLAIN, 15));
 		passwordUser.setColumns(10);
-		passwordUser.setBorder(null);
+		passwordUser.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 5));
 		passwordUser.setBackground(new Color(246, 246, 246));
 		passwordUser.setBounds(443, 452, 419, 40);
 		panelUser.add(passwordUser);
@@ -378,7 +387,7 @@ public class Manage extends JFrame {
 		addressUser.setToolTipText("User Password");
 		addressUser.setFont(new Font("Roboto", Font.PLAIN, 15));
 		addressUser.setColumns(10);
-		addressUser.setBorder(null);
+		addressUser.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 5));
 		addressUser.setBackground(new Color(246, 246, 246));
 		addressUser.setBounds(10, 522, 419, 40);
 		panelUser.add(addressUser);
@@ -392,7 +401,7 @@ public class Manage extends JFrame {
 		phoneUser.setToolTipText("User Password");
 		phoneUser.setFont(new Font("Roboto", Font.PLAIN, 15));
 		phoneUser.setColumns(10);
-		phoneUser.setBorder(null);
+		phoneUser.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 5));
 		phoneUser.setBackground(new Color(246, 246, 246));
 		phoneUser.setBounds(443, 522, 419, 40);
 		panelUser.add(phoneUser);
@@ -406,9 +415,9 @@ public class Manage extends JFrame {
 		codeUser.setToolTipText("User Password");
 		codeUser.setFont(new Font("Roboto", Font.PLAIN, 15));
 		codeUser.setColumns(10);
-		codeUser.setBorder(null);
+		codeUser.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 5));
 		codeUser.setBackground(new Color(246, 246, 246));
-		codeUser.setBounds(10, 592, 419, 40);
+		codeUser.setBounds(10, 592, 313, 40);
 		panelUser.add(codeUser);
 		
 		JLabel lblId_3_1 = new JLabel("Code");
@@ -418,15 +427,29 @@ public class Manage extends JFrame {
 		
 		JLabel lblId_1_2_1 = new JLabel("Role");
 		lblId_1_2_1.setFont(new Font("Roboto", Font.PLAIN, 15));
-		lblId_1_2_1.setBounds(443, 572, 80, 13);
+		lblId_1_2_1.setBounds(650, 572, 80, 13);
 		panelUser.add(lblId_1_2_1);
 		
 		JComboBox roleUser = new JComboBox();
 		roleUser.setBorder(null);
 		roleUser.setBackground(new Color(246, 246, 246));
 		roleUser.setFont(new Font("Roboto", Font.PLAIN, 15));
-		roleUser.setBounds(443, 592, 419, 40);
+		roleUser.setBounds(650, 592, 212, 40);
 		panelUser.add(roleUser);
+		
+		dateUser = new JTextField();
+		dateUser.setToolTipText("User Password");
+		dateUser.setFont(new Font("Roboto", Font.PLAIN, 15));
+		dateUser.setColumns(10);
+		dateUser.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 5));
+		dateUser.setBackground(new Color(246, 246, 246));
+		dateUser.setBounds(333, 592, 307, 40);
+		panelUser.add(dateUser);
+		
+		JLabel Date = new JLabel("Date");
+		Date.setFont(new Font("Roboto", Font.PLAIN, 15));
+		Date.setBounds(333, 573, 80, 13);
+		panelUser.add(Date);
 		
 		JPanel panelVehicle = new JPanel();
 		panelVehicle.setBorder(null);
@@ -443,14 +466,14 @@ public class Manage extends JFrame {
 		deleteUser_1.setBounds(772, 312, 90, 40);
 		panelVehicle.add(deleteUser_1);
 		
-		textField = new JTextField();
-		textField.setToolTipText("User Password");
-		textField.setFont(new Font("Roboto", Font.PLAIN, 15));
-		textField.setColumns(10);
-		textField.setBorder(null);
-		textField.setBackground(new Color(246, 246, 246));
-		textField.setBounds(10, 312, 348, 40);
-		panelVehicle.add(textField);
+		searchVehicle = new JTextField();
+		searchVehicle.setToolTipText("User Password");
+		searchVehicle.setFont(new Font("Roboto", Font.PLAIN, 15));
+		searchVehicle.setColumns(10);
+		searchVehicle.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 5));
+		searchVehicle.setBackground(new Color(246, 246, 246));
+		searchVehicle.setBounds(10, 312, 348, 40);
+		panelVehicle.add(searchVehicle);
 		
 		JButton updateUser_1 = new JButton("Update");
 		updateUser_1.setForeground(Color.WHITE);
@@ -488,98 +511,98 @@ public class Manage extends JFrame {
 		searchUser_1.setBounds(368, 312, 90, 40);
 		panelVehicle.add(searchUser_1);
 		
-		textField_2 = new JTextField();
-		textField_2.setToolTipText("User Password");
-		textField_2.setFont(new Font("Roboto", Font.PLAIN, 15));
-		textField_2.setColumns(10);
-		textField_2.setBorder(null);
-		textField_2.setBackground(new Color(246, 246, 246));
-		textField_2.setBounds(10, 382, 419, 40);
-		panelVehicle.add(textField_2);
+		idVehicle = new JTextField();
+		idVehicle.setToolTipText("User Password");
+		idVehicle.setFont(new Font("Roboto", Font.PLAIN, 15));
+		idVehicle.setColumns(10);
+		idVehicle.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 5));
+		idVehicle.setBackground(new Color(246, 246, 246));
+		idVehicle.setBounds(10, 382, 419, 40);
+		panelVehicle.add(idVehicle);
 		
 		JLabel lblId_4 = new JLabel("Id");
 		lblId_4.setFont(new Font("Roboto", Font.PLAIN, 15));
 		lblId_4.setBounds(10, 362, 80, 13);
 		panelVehicle.add(lblId_4);
 		
-		textField_3 = new JTextField();
-		textField_3.setToolTipText("User Password");
-		textField_3.setFont(new Font("Roboto", Font.PLAIN, 15));
-		textField_3.setColumns(10);
-		textField_3.setBorder(null);
-		textField_3.setBackground(new Color(246, 246, 246));
-		textField_3.setBounds(443, 382, 419, 40);
-		panelVehicle.add(textField_3);
+		nameVehicle = new JTextField();
+		nameVehicle.setToolTipText("User Password");
+		nameVehicle.setFont(new Font("Roboto", Font.PLAIN, 15));
+		nameVehicle.setColumns(10);
+		nameVehicle.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 5));
+		nameVehicle.setBackground(new Color(246, 246, 246));
+		nameVehicle.setBounds(443, 382, 419, 40);
+		panelVehicle.add(nameVehicle);
 		
 		JLabel lblId_1_3 = new JLabel("Name");
 		lblId_1_3.setFont(new Font("Roboto", Font.PLAIN, 15));
 		lblId_1_3.setBounds(443, 362, 80, 13);
 		panelVehicle.add(lblId_1_3);
 		
-		textField_4 = new JTextField();
-		textField_4.setToolTipText("User Password");
-		textField_4.setFont(new Font("Roboto", Font.PLAIN, 15));
-		textField_4.setColumns(10);
-		textField_4.setBorder(null);
-		textField_4.setBackground(new Color(246, 246, 246));
-		textField_4.setBounds(10, 452, 419, 40);
-		panelVehicle.add(textField_4);
+		colorVehicle = new JTextField();
+		colorVehicle.setToolTipText("User Password");
+		colorVehicle.setFont(new Font("Roboto", Font.PLAIN, 15));
+		colorVehicle.setColumns(10);
+		colorVehicle.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 5));
+		colorVehicle.setBackground(new Color(246, 246, 246));
+		colorVehicle.setBounds(10, 452, 419, 40);
+		panelVehicle.add(colorVehicle);
 		
 		JLabel lblId_2_1 = new JLabel("Color");
 		lblId_2_1.setFont(new Font("Roboto", Font.PLAIN, 15));
 		lblId_2_1.setBounds(10, 432, 80, 13);
 		panelVehicle.add(lblId_2_1);
 		
-		textField_5 = new JTextField();
-		textField_5.setToolTipText("User Password");
-		textField_5.setFont(new Font("Roboto", Font.PLAIN, 15));
-		textField_5.setColumns(10);
-		textField_5.setBorder(null);
-		textField_5.setBackground(new Color(246, 246, 246));
-		textField_5.setBounds(443, 452, 419, 40);
-		panelVehicle.add(textField_5);
+		typeVehicle = new JTextField();
+		typeVehicle.setToolTipText("User Password");
+		typeVehicle.setFont(new Font("Roboto", Font.PLAIN, 15));
+		typeVehicle.setColumns(10);
+		typeVehicle.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 5));
+		typeVehicle.setBackground(new Color(246, 246, 246));
+		typeVehicle.setBounds(443, 452, 419, 40);
+		panelVehicle.add(typeVehicle);
 		
 		JLabel lblId_1_1_1 = new JLabel("Type");
 		lblId_1_1_1.setFont(new Font("Roboto", Font.PLAIN, 15));
 		lblId_1_1_1.setBounds(443, 432, 80, 13);
 		panelVehicle.add(lblId_1_1_1);
 		
-		textField_6 = new JTextField();
-		textField_6.setToolTipText("User Password");
-		textField_6.setFont(new Font("Roboto", Font.PLAIN, 15));
-		textField_6.setColumns(10);
-		textField_6.setBorder(null);
-		textField_6.setBackground(new Color(246, 246, 246));
-		textField_6.setBounds(10, 522, 419, 40);
-		panelVehicle.add(textField_6);
+		dateVehicle = new JTextField();
+		dateVehicle.setToolTipText("User Password");
+		dateVehicle.setFont(new Font("Roboto", Font.PLAIN, 15));
+		dateVehicle.setColumns(10);
+		dateVehicle.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 5));
+		dateVehicle.setBackground(new Color(246, 246, 246));
+		dateVehicle.setBounds(10, 522, 419, 40);
+		panelVehicle.add(dateVehicle);
 		
 		JLabel lblId_3_2 = new JLabel("Date");
 		lblId_3_2.setFont(new Font("Roboto", Font.PLAIN, 15));
 		lblId_3_2.setBounds(10, 502, 80, 13);
 		panelVehicle.add(lblId_3_2);
 		
-		textField_7 = new JTextField();
-		textField_7.setToolTipText("User Password");
-		textField_7.setFont(new Font("Roboto", Font.PLAIN, 15));
-		textField_7.setColumns(10);
-		textField_7.setBorder(null);
-		textField_7.setBackground(new Color(246, 246, 246));
-		textField_7.setBounds(443, 522, 419, 40);
-		panelVehicle.add(textField_7);
+		seat_capacityVehicle = new JTextField();
+		seat_capacityVehicle.setToolTipText("User Password");
+		seat_capacityVehicle.setFont(new Font("Roboto", Font.PLAIN, 15));
+		seat_capacityVehicle.setColumns(10);
+		seat_capacityVehicle.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 5));
+		seat_capacityVehicle.setBackground(new Color(246, 246, 246));
+		seat_capacityVehicle.setBounds(443, 522, 419, 40);
+		panelVehicle.add(seat_capacityVehicle);
 		
 		JLabel lblId_1_2_2 = new JLabel("Seat Capacity");
 		lblId_1_2_2.setFont(new Font("Roboto", Font.PLAIN, 15));
 		lblId_1_2_2.setBounds(443, 502, 119, 13);
 		panelVehicle.add(lblId_1_2_2);
 		
-		textField_8 = new JTextField();
-		textField_8.setToolTipText("User Password");
-		textField_8.setFont(new Font("Roboto", Font.PLAIN, 15));
-		textField_8.setColumns(10);
-		textField_8.setBorder(null);
-		textField_8.setBackground(new Color(246, 246, 246));
-		textField_8.setBounds(10, 592, 852, 40);
-		panelVehicle.add(textField_8);
+		brandVehicle = new JTextField();
+		brandVehicle.setToolTipText("User Password");
+		brandVehicle.setFont(new Font("Roboto", Font.PLAIN, 15));
+		brandVehicle.setColumns(10);
+		brandVehicle.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 5));
+		brandVehicle.setBackground(new Color(246, 246, 246));
+		brandVehicle.setBounds(10, 592, 852, 40);
+		panelVehicle.add(brandVehicle);
 		
 		JLabel lblId_3_1_1 = new JLabel("Brand");
 		lblId_3_1_1.setFont(new Font("Roboto", Font.PLAIN, 15));
@@ -590,11 +613,11 @@ public class Manage extends JFrame {
 		scrollPane_1.setBounds(10, 10, 852, 292);
 		panelVehicle.add(scrollPane_1);
 		
-		table = new JTable();
-		scrollPane_1.setViewportView(table);
+		tableVehicle = new JTable();
+		scrollPane_1.setViewportView(tableVehicle);
 		
 		JPanel panelManage = new JPanel();
-		panelManage.setBorder(null);
+		panelManage.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 5));
 		panelManage.setBackground(Color.WHITE);
 		tabbedPane.addTab("Quản lý đăng ký", null, panelManage, null);
 		panelManage.setLayout(null);
@@ -608,14 +631,14 @@ public class Manage extends JFrame {
 		deleteUser_1_1.setBounds(772, 312, 90, 40);
 		panelManage.add(deleteUser_1_1);
 		
-		textField_9 = new JTextField();
-		textField_9.setToolTipText("User Password");
-		textField_9.setFont(new Font("Roboto", Font.PLAIN, 15));
-		textField_9.setColumns(10);
-		textField_9.setBorder(null);
-		textField_9.setBackground(new Color(246, 246, 246));
-		textField_9.setBounds(10, 312, 348, 40);
-		panelManage.add(textField_9);
+		searchManage = new JTextField();
+		searchManage.setToolTipText("User Password");
+		searchManage.setFont(new Font("Roboto", Font.PLAIN, 15));
+		searchManage.setColumns(10);
+		searchManage.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 5));
+		searchManage.setBackground(new Color(246, 246, 246));
+		searchManage.setBounds(10, 312, 348, 40);
+		panelManage.add(searchManage);
 		
 		JButton updateUser_1_1 = new JButton("Update");
 		updateUser_1_1.setForeground(Color.WHITE);
@@ -657,7 +680,7 @@ public class Manage extends JFrame {
 		idManage.setToolTipText("User Password");
 		idManage.setFont(new Font("Roboto", Font.PLAIN, 15));
 		idManage.setColumns(10);
-		idManage.setBorder(null);
+		idManage.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 5));
 		idManage.setBackground(new Color(246, 246, 246));
 		idManage.setBounds(10, 382, 419, 40);
 		panelManage.add(idManage);
@@ -676,7 +699,7 @@ public class Manage extends JFrame {
 		nameManage.setToolTipText("User Password");
 		nameManage.setFont(new Font("Roboto", Font.PLAIN, 15));
 		nameManage.setColumns(10);
-		nameManage.setBorder(null);
+		nameManage.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 5));
 		nameManage.setBackground(new Color(246, 246, 246));
 		nameManage.setBounds(10, 452, 419, 40);
 		panelManage.add(nameManage);
@@ -695,7 +718,7 @@ public class Manage extends JFrame {
 		dateManage.setToolTipText("User Password");
 		dateManage.setFont(new Font("Roboto", Font.PLAIN, 15));
 		dateManage.setColumns(10);
-		dateManage.setBorder(null);
+		dateManage.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 5));
 		dateManage.setBackground(new Color(246, 246, 246));
 		dateManage.setBounds(10, 522, 419, 40);
 		panelManage.add(dateManage);
@@ -709,7 +732,7 @@ public class Manage extends JFrame {
 		plateManage.setToolTipText("User Password");
 		plateManage.setFont(new Font("Roboto", Font.PLAIN, 15));
 		plateManage.setColumns(10);
-		plateManage.setBorder(null);
+		plateManage.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 5));
 		plateManage.setBackground(new Color(246, 246, 246));
 		plateManage.setBounds(443, 522, 419, 40);
 		panelManage.add(plateManage);
@@ -719,32 +742,34 @@ public class Manage extends JFrame {
 		lblId_1_2_2_1.setBounds(443, 502, 119, 13);
 		panelManage.add(lblId_1_2_2_1);
 		
-		JComboBox NameUser = new JComboBox();
-		NameUser.setFont(new Font("Roboto", Font.PLAIN, 15));
-		NameUser.setBorder(null);
-		NameUser.setBackground(new Color(246, 246, 246));
-		NameUser.setBounds(439, 382, 419, 40);
-		panelManage.add(NameUser);
+		JComboBox nameUserManage = new JComboBox();
+		nameUserManage.setFont(new Font("Roboto", Font.PLAIN, 15));
+		nameUserManage.setBorder(null);
+		nameUserManage.setBackground(new Color(246, 246, 246));
+		nameUserManage.setBounds(439, 382, 419, 40);
+		panelManage.add(nameUserManage);
 		
-		JComboBox nameVehicle = new JComboBox();
-		nameVehicle.setFont(new Font("Roboto", Font.PLAIN, 15));
-		nameVehicle.setBorder(null);
-		nameVehicle.setBackground(new Color(246, 246, 246));
-		nameVehicle.setBounds(439, 452, 419, 40);
-		panelManage.add(nameVehicle);
+		JComboBox nameVehicleManage = new JComboBox();
+		nameVehicleManage.setFont(new Font("Roboto", Font.PLAIN, 15));
+		nameVehicleManage.setBorder(null);
+		nameVehicleManage.setBackground(new Color(246, 246, 246));
+		nameVehicleManage.setBounds(439, 452, 419, 40);
+		panelManage.add(nameVehicleManage);
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
 		scrollPane_2.setBounds(10, 10, 852, 291);
 		panelManage.add(scrollPane_2);
 		
-		table_1 = new JTable();
-		scrollPane_2.setViewportView(table_1);
+		tableManage = new JTable();
+		scrollPane_2.setViewportView(tableManage);
 		
 		JPanel panelChart = new JPanel();
 		panelChart.setBorder(null);
 		panelChart.setBackground(Color.WHITE);
 		tabbedPane.addTab("Biểu đố", null, panelChart, null);
 		setLocationRelativeTo(null);
+
+        
 		HomePanel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -775,6 +800,9 @@ public class Manage extends JFrame {
 				tabbedPane.setSelectedIndex(4);
 			}
 		});
+		Timer tm1;
+	    int x = 0;
+        
 		tabbedPane.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				int index = tabbedPane.getSelectedIndex();
@@ -815,5 +843,7 @@ public class Manage extends JFrame {
 				}
 			}
 		});
+		
+		
 	}
 }

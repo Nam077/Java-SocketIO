@@ -1,5 +1,0 @@
-package Models;
-import com.mysql.cj.jdbc.JdbcConnection;
-public class Account {
-
-}

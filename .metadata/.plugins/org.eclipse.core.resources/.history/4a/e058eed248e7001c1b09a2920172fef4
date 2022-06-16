@@ -1,6 +1,0 @@
-package Configs;
-import io.github.cdimascio.dotenv.Dotenv;
-public class ConfigSQL {
-	
-
-}
