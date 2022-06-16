@@ -43,4 +43,10 @@
     <fullyQualifiedTypeName name="java.awt.Insets"/>
     <fullyQualifiedTypeName name="java.util.Timer"/>
     <fullyQualifiedTypeName name="java.util.TimerTask"/>
+    <fullyQualifiedTypeName name="org.jdatepicker.impl.UtilDateModel"/>
+    <fullyQualifiedTypeName name="org.jdatepicker.impl.JDatePanelImpl"/>
+    <fullyQualifiedTypeName name="org.jdatepicker.impl.JDatePickerImpl"/>
+    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
 </qualifiedTypeNameHistroy>
